@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Why Your AI-Powered Code Might Be a House of Cards - Buyun Wang">
+  <Navigation />
+  <main class="pt-32 pb-24 px-8 min-h-screen">
+    <article class="max-w-4xl mx-auto">
+      <header class="mb-12">
+        <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+          <span class="px-2 py-1 bg-gray-100 rounded-md text-xs font-medium">AI & Development</span>
+          <span>Dec 5, 2024</span>
+          <span>•</span>
+          <span>7 min read</span>
+        </div>
+        <h1 class="text-5xl font-bold mb-6">Why Your AI-Powered Code Might Be a House of Cards (and What to Do About It)</h1>
+        <p class="text-xl text-gray-600 mb-4">Lessons learned from a year of AI-assisted development and how to build more robust foundations.</p>
+        <div class="border-t pt-4">
+          <a href="https://medium.com/@buyunwang/why-your-ai-powered-code-might-be-a-house-of-cards-and-what-to-do-about-it-13a93eb2dec4"
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            Read original on Medium →
+          </a>
+        </div>
+      </header>
+      
+      <div class="prose prose-lg max-w-none">
+        <p class="mb-6">
+          I've spent the better part of the past year knee-deep in the world of AI-assisted coding. It's been a wild ride — like trading in my bicycle for a rocket ship. But here's the thing: rockets can crash, and when they do, the damage can be catastrophic.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The Honeymoon Phase</h2>
+        
+        <p class="mb-4">
+          When I first started using GitHub Copilot, ChatGPT, and other AI coding assistants, I felt like I'd discovered a superpower. Complex algorithms? Generated in seconds. Boilerplate code? Gone. Unit tests? Written faster than I could review them.
+        </p>
+        
+        <p class="mb-6">
+          My productivity metrics went through the roof. I was shipping features at 3x my normal speed. Management was thrilled. I was thrilled. What could possibly go wrong?
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The First Cracks</h2>
+        
+        <p class="mb-4">
+          It started small. A bug here, an edge case there. Nothing that couldn't be fixed with a quick patch. But as the codebase grew, something became increasingly clear: I didn't fully understand large portions of the code I'd "written."
+        </p>
+        
+        <p class="mb-6">
+          Sure, I'd reviewed it. I'd tested it. It worked. But when it came time to modify or extend that code, I found myself struggling. The AI had generated elegant solutions using patterns I wasn't familiar with, libraries I'd never used, and abstractions that made sense in isolation but created unexpected dependencies.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The Hidden Costs of AI-Generated Code</h2>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">1. The Knowledge Gap</h3>
+        
+        <p class="mb-6 pl-4">
+          When you write code manually, you build a mental model of how everything connects. You understand not just what the code does, but why it does it that way. AI-generated code can bypass this crucial learning process.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">2. Inconsistent Patterns</h3>
+        
+        <p class="mb-6 pl-4">
+          AI models are trained on millions of code repositories, each with their own style and patterns. The result? Your codebase becomes a patchwork of different approaches. One module uses dependency injection, another uses singletons, and a third uses factory patterns — all solving similar problems.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">3. Over-Engineering</h3>
+        
+        <p class="mb-6 pl-4">
+          AI tends to generate "complete" solutions, often adding complexity that isn't needed. That simple function you needed? Now it's a full class hierarchy with abstract interfaces and generic types.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">4. Hidden Dependencies</h3>
+        
+        <p class="mb-6 pl-4">
+          AI might generate code that works perfectly but relies on subtle environmental assumptions or specific library versions. These dependencies aren't always obvious until something breaks in production.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The Collapse</h2>
+        
+        <p class="mb-4">
+          The house of cards fell when we needed to make a significant architectural change. What should have been a two-week refactor turned into a two-month nightmare. The team couldn't understand half the codebase. The AI-generated tests were testing implementation details rather than behavior. The documentation (also AI-generated) was generic and unhelpful.
+        </p>
+        
+        <p class="mb-6">
+          We ended up rewriting large portions from scratch — this time with a very different approach to AI assistance.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">Building on Solid Ground: A Better Approach</h2>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">1. Use AI as a Pair Programmer, Not a Ghostwriter</h3>
+        
+        <p class="mb-6 pl-4">
+          Think of AI as a junior developer sitting next to you. You wouldn't let a junior write critical code unsupervised, and you shouldn't let AI either. Use it for suggestions and ideas, but write the final implementation yourself.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">2. The 80/20 Rule</h3>
+        
+        <p class="mb-6 pl-4">
+          I now follow a simple rule: AI can generate up to 20% of any given module. The other 80% must be hand-written or heavily modified. This ensures I maintain deep understanding of the codebase.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">3. Never Generate What You Don't Understand</h3>
+        
+        <p class="mb-6 pl-4">
+          If the AI generates code using a pattern or library you're not familiar with, stop. Either learn it properly or ask the AI to use a simpler approach you do understand.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">4. Test the Understanding, Not Just the Code</h3>
+        
+        <p class="mb-6 pl-4">
+          Before accepting AI-generated code, ask yourself: Could I explain this to a colleague? Could I modify it without the AI's help? If the answer is no, it doesn't go into the codebase.
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">5. Regular "AI Detox" Sessions</h3>
+        
+        <p class="mb-6 pl-4">
+          Once a week, I code without any AI assistance. It keeps my skills sharp and helps me identify areas where I've become too dependent on AI.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The Right Tool for the Right Job</h2>
+        
+        <p class="mb-6">
+          AI excels at certain tasks and struggles with others. Here's my current breakdown:
+        </p>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">Great for AI:</h3>
+        
+        <ul class="mb-6 pl-6 space-y-2">
+          <li>Boilerplate and repetitive code</li>
+          <li>Writing unit tests for existing code</li>
+          <li>Generating documentation</li>
+          <li>Syntax lookups and API references</li>
+          <li>Code reviews and bug spotting</li>
+        </ul>
+
+        <h3 class="mt-8 mb-4 text-xl font-semibold">Handle with Care:</h3>
+        
+        <ul class="mb-8 pl-6 space-y-2">
+          <li>Algorithm implementation</li>
+          <li>System architecture decisions</li>
+          <li>Security-critical code</li>
+          <li>Performance optimizations</li>
+          <li>Business logic implementation</li>
+        </ul>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">The New Reality</h2>
+        
+        <p class="mb-4">
+          AI isn't going away, and neither should it. It's an incredibly powerful tool that's fundamentally changing how we write software. But like any powerful tool, it needs to be used responsibly.
+        </p>
+        
+        <p class="mb-6">
+          The developers who will thrive in this new era aren't those who can generate the most code with AI, but those who can effectively collaborate with AI while maintaining deep technical understanding and ownership of their code.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">Lessons Learned</h2>
+        
+        <ol class="mb-8 pl-6 space-y-3">
+          <li><strong>Speed without understanding is technical debt</strong> - You're just borrowing time from your future self.</li>
+          <li><strong>AI amplifies your skills, it doesn't replace them</strong> - A weak developer with AI is still a weak developer.</li>
+          <li><strong>Code ownership means understanding</strong> - If you don't understand it, you don't own it.</li>
+          <li><strong>The best code is still human-crafted</strong> - AI can help, but intuition, context, and creativity remain uniquely human.</li>
+        </ol>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">Moving Forward</h2>
+        
+        <p class="mb-4">
+          Six months after our "collapse," our team is stronger than ever. We still use AI extensively, but differently. Our code reviews are more thorough. Our documentation focuses on why, not just what. And most importantly, every team member can explain every line of code they're responsible for.
+        </p>
+        
+        <p class="mb-6">
+          AI has made us faster, but conscious, deliberate practice has made us better. The house of cards has been replaced with a solid foundation — one that AI helps us build, but doesn't build for us.
+        </p>
+
+        <h2 class="mt-12 mb-6 text-3xl font-bold">Final Thoughts</h2>
+        
+        <p class="mb-4">
+          If you're using AI to write code, ask yourself: Am I building something sustainable, or am I stacking cards? The answer might determine whether your next production incident is a minor inconvenience or a complete rebuild.
+        </p>
+        
+        <p class="mb-6">
+          Use AI. Embrace it. But never forget that at the end of the day, you're the engineer. The code is your responsibility, and understanding it deeply is not optional — it's essential.
+        </p>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
