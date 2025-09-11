@@ -2,28 +2,28 @@
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="fixed top-0 w-full z-50 px-8 py-6 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm">
+<nav class="fixed top-0 w-full z-50 px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a href="/" class="text-xl font-semibold text-gray-900 hover:text-gray-600 transition-colors">
+    <a href="/" class="text-lg sm:text-xl font-semibold text-gray-900 hover:text-gray-600 transition-colors">
       BW
     </a>
     
-    <div class="flex gap-8 items-center">
+    <div class="flex gap-4 sm:gap-6 md:gap-8 items-center">
       <a 
         href="/blog" 
-        class={`text-sm font-medium transition-colors ${currentPath.startsWith('/blog') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+        class={`text-xs sm:text-sm font-medium transition-colors ${currentPath.startsWith('/blog') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
       >
         Blog
       </a>
       <a 
         href="/#work" 
-        class={`text-sm font-medium transition-colors ${currentPath === '/' ? 'text-gray-900 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'}`}
+        class={`text-xs sm:text-sm font-medium transition-colors ${currentPath === '/' ? 'text-gray-900 hover:text-gray-600' : 'text-gray-600 hover:text-gray-900'}`}
       >
         Work
       </a>
       <a 
         href="/about" 
-        class={`text-sm font-medium transition-colors ${currentPath === '/about' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+        class={`text-xs sm:text-sm font-medium transition-colors ${currentPath === '/about' ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
       >
         About
       </a>
