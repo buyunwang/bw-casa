@@ -1,0 +1,146 @@
+---
+// Weather Widget Component - displays minimal weather info, timezone, and location
+---
+
+<a href="https://www.vancouverisawesome.com/weather?locationid=53" target="_blank" rel="noopener noreferrer" id="weather-widget" class="group flex items-center text-xs text-white bg-gray-900 rounded-full pl-2 pr-1 py-2 transition-all duration-300 ease-in-out hover:pl-2 hover:pr-2 cursor-pointer no-underline">
+  <div class="flex items-center gap-1">
+    <span id="weather-icon">🌤️</span>
+    <span id="temperature" class="min-w-[32px]">15°C</span>
+  </div>
+  <span id="location" class="overflow-hidden transition-all duration-300 ease-in-out w-0 group-hover:w-16 group-hover:ml-1 whitespace-nowrap">Vancouver</span>
+</a>
+
+<script>
+  // Weather widget functionality
+  async function initWeatherWidget() {
+    const widget = document.getElementById('weather-widget');
+    if (!widget) return;
+
+    const tempElement = document.getElementById('temperature');
+    const iconElement = document.getElementById('weather-icon');
+    const locationElement = document.getElementById('location');
+
+
+    // Get Vancouver weather with 30-minute caching
+    async function getVancouverWeather() {
+      const CACHE_KEY = 'vancouver_weather';
+      const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
+      
+      try {
+        // Check for cached data
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          const cachedData = JSON.parse(cached);
+          const now = Date.now();
+          
+          // Use cached data if it's less than 30 minutes old
+          if (now - cachedData.timestamp < CACHE_DURATION) {
+            // Update UI with cached data
+            if (tempElement) tempElement.textContent = cachedData.temperature;
+            if (iconElement) iconElement.textContent = cachedData.icon;
+            if (locationElement) locationElement.textContent = 'Vancouver';
+            return;
+          }
+        }
+        
+        // Vancouver, BC coordinates
+        const latitude = 49.2827;
+        const longitude = -123.1207;
+
+        // Fetch fresh weather data
+        const weatherResponse = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&timezone=auto&forecast_days=1`
+        );
+        
+        if (!weatherResponse.ok) throw new Error('Weather API failed');
+        
+        const weatherData = await weatherResponse.json();
+        const temp = Math.round(weatherData.current.temperature_2m);
+        const weatherCode = weatherData.current.weather_code;
+        
+        // Map weather codes to emojis (simplified)
+        const getWeatherIcon = (code) => {
+          if (code <= 3) return '☀️'; // Clear/partly cloudy
+          if (code <= 48) return '☁️'; // Cloudy/foggy
+          if (code <= 67) return '🌧️'; // Rain
+          if (code <= 77) return '❄️'; // Snow
+          if (code <= 82) return '🌦️'; // Showers
+          return '🌤️'; // Default
+        };
+        
+        const temperature = `${temp}°C`;
+        const icon = getWeatherIcon(weatherCode);
+        
+        // Cache the new data
+        const cacheData = {
+          temperature,
+          icon,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+
+        // Update UI with fresh data
+        if (tempElement) tempElement.textContent = temperature;
+        if (iconElement) iconElement.textContent = icon;
+        if (locationElement) locationElement.textContent = 'Vancouver';
+
+      } catch (error) {
+        console.log('Weather widget: Unable to get Vancouver weather data');
+        // Fallback display
+        if (locationElement) locationElement.textContent = 'Vancouver';
+        if (tempElement) tempElement.textContent = '--°';
+        if (iconElement) iconElement.textContent = '🌍';
+      }
+    }
+
+    // Initialize
+    getVancouverWeather();
+  }
+
+
+  // Load cached data immediately to prevent layout shift
+  function loadCachedData() {
+    const CACHE_KEY = 'vancouver_weather';
+    const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
+    
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const cachedData = JSON.parse(cached);
+        const now = Date.now();
+        
+        // Use cached data if it's less than 30 minutes old
+        if (now - cachedData.timestamp < CACHE_DURATION) {
+          const tempElement = document.getElementById('temperature');
+          const iconElement = document.getElementById('weather-icon');
+          const locationElement = document.getElementById('location');
+          
+          if (tempElement) tempElement.textContent = cachedData.temperature;
+          if (iconElement) iconElement.textContent = cachedData.icon;
+          if (locationElement) locationElement.textContent = 'Vancouver';
+          return true; // Indicate we loaded from cache
+        }
+      }
+    } catch (error) {
+      console.log('Could not load cached weather data');
+    }
+    return false; // No cache or expired
+  }
+
+  // Try to load cached data immediately
+  const hasCache = loadCachedData();
+
+  // Run full initialization when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!hasCache) {
+        initWeatherWidget();
+      }
+    });
+  } else {
+    if (!hasCache) {
+      initWeatherWidget();
+    }
+  }
+  
+</script>
