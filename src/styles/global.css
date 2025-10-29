@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+/* Custom cursor styles */
+:root {
+  --cursor-default: url('/cursors/arrow.svg'), auto;
+  --cursor-pointer: url('/cursors/pointer.svg'), pointer;
+  --cursor-text: url('/cursors/text.svg'), text;
+}
+
+/* Only apply custom cursors on devices with precise pointing (not touch) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: var(--cursor-default);
+  }
+
+  a,
+  a *,
+  button,
+  button *,
+  [role="button"],
+  select,
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: var(--cursor-pointer);
+  }
+
+  p,
+  h1, h2, h3, h4, h5, h6,
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  textarea {
+    cursor: var(--cursor-text);
+  }
+}
