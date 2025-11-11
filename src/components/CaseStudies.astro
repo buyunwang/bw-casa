@@ -2,6 +2,14 @@
 const caseStudies = [
   {
     number: "01",
+    title: "Badgercoin Marketing Site — Experimental Rebuild",
+    description: "From-scratch redesign and build using Astro islands, React 19, Tailwind 4, motion, maps, and selective 3D. Focused on performance, trust, and maintainability.",
+    tags: ["Astro", "React", "TypeScript", "Tailwind", "Framer Motion", "Leaflet", "Three.js"],
+    link: "/case-studies/badgercoin-marketingsite-experimental",
+    color: "from-amber-500 to-orange-600"
+  },
+  {
+    number: "02",
     title: "SurveyHorizon E-commerce Platform",
     description: "Leading developer for a comprehensive React-based geospatial technology e-commerce platform serving surveying professionals across Canada with advanced product management and AI-powered features.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Vercel"],
@@ -9,7 +17,7 @@ const caseStudies = [
     color: "from-blue-500 to-cyan-600"
   },
   {
-    number: "02",
+    number: "03",
     title: "Wellness Together Canada",
     description: "A comprehensive Flutter-based mental health platform serving 200k+ users nationwide with mood tracking, self-assessments, and wellness tools.",
     tags: ["Flutter", "Django REST", "Firebase"],
@@ -17,7 +25,7 @@ const caseStudies = [
     color: "from-green-400 to-blue-600"
   },
   {
-    number: "03",
+    number: "04",
     title: "Winston UTrack - React Native Mobile App",
     description: "Lead Developer for Winston UTrack, an educational workshop management application successfully deployed on Google Play Store and Apple App Store, supporting 130+ student sign-ups on launch day.",
     tags: ["React Native", "Redux", "PostgreSQL", "Ruby on Rails", "Mobile Development"],
@@ -28,8 +36,11 @@ const caseStudies = [
 ---
 
 <section id="work" class="py-24 px-8 bg-white/50">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-4xl font-bold mb-16">Case Studies</h2>
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="text-4xl font-bold">Case Studies</h2>
+      <a href="/case-studies" class="hidden sm:inline-block text-sm font-medium text-gray-900 hover:text-gray-600">View all →</a>
+    </div>
     
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {caseStudies.map((study) => (
@@ -70,5 +81,8 @@ const caseStudies = [
         </a>
       ))}
     </div>
+  </div>
+  <div class="mt-8 text-center sm:hidden">
+    <a href="/case-studies" class="inline-block text-sm font-medium text-gray-900 hover:text-gray-600">View all →</a>
   </div>
 </section>

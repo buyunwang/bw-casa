@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+const studies = [
+  {
+    title: 'Badgercoin Marketing Site — Experimental Rebuild',
+    excerpt: 'From-scratch redesign and build using Astro islands, React 19, Tailwind 4, motion, maps, and selective 3D. Focused on performance, trust, and maintainability.',
+    tags: ['Astro', 'React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Leaflet', 'Three.js'],
+    link: '/case-studies/badgercoin-marketingsite-experimental',
+  },
+  {
+    title: 'SurveyHorizon E-commerce Platform',
+    excerpt: 'React + TypeScript geospatial tech e-commerce platform with AI-powered features and modern UI system.',
+    tags: ['React', 'TypeScript', 'Tailwind', 'Supabase', 'Vercel'],
+    link: '/case-studies/survey-horizon',
+  },
+  {
+    title: 'Wellness Together Canada',
+    excerpt: 'Flutter mobile app and Astro web platform serving 200k+ users nationwide with wellness tools and resources.',
+    tags: ['Flutter', 'Django REST', 'Firebase', 'Astro'],
+    link: '/case-studies/wellness-together-canada',
+  },
+  {
+    title: 'Winston UTrack - React Native Mobile App',
+    excerpt: 'Cross-platform mobile app with Rails/Postgres backend. 130+ student sign-ups on launch day.',
+    tags: ['React Native', 'Redux', 'PostgreSQL', 'Rails'],
+    link: '/case-studies/winston-utrack',
+  },
+];
+---
+
+<Layout title="Case Studies - Buyun Wang">
+  <Navigation />
+  <main class="pt-32 pb-24 px-8 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <a href="/" class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-6 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to Home
+        </a>
+        <h1 class="text-5xl font-bold mb-3">Case Studies</h1>
+        <p class="text-xl text-gray-600">Selected work with details on design thinking, engineering, and results.</p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        {studies.map((s) => (
+          <a href={s.link} class="group block bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all border">
+            <h2 class="text-2xl font-semibold mb-2 group-hover:text-gray-700">{s.title}</h2>
+            <p class="text-gray-600 mb-4">{s.excerpt}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {s.tags.map((t) => <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-md">{t}</span>)}
+            </div>
+            <span class="text-sm font-medium text-gray-900">Read case study →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
