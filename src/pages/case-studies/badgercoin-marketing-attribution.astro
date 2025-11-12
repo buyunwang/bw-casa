@@ -1,0 +1,400 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="BadgerCoin Marketing Analytics & Attribution System - Buyun Wang">
+  <Navigation />
+  <main class="pt-32 pb-24 px-8">
+    <article class="max-w-4xl mx-auto">
+      <div class="mb-12">
+        <a href="/" class="text-sm text-gray-600 hover:text-gray-900 mb-4 inline-block">← Back to Home</a>
+        <h1 class="text-5xl font-bold mb-4">BadgerCoin Marketing Analytics & Multi-Touch Attribution System</h1>
+        <div class="flex gap-4 text-sm text-gray-600 mb-6">
+          <span>Full-Stack Developer</span>
+          <span>•</span>
+          <span>Laravel & React</span>
+          <span>•</span>
+          <span>Enterprise Analytics</span>
+          <span>•</span>
+          <span>2024</span>
+        </div>
+        <p class="text-xl text-gray-700 leading-relaxed">
+          Engineered an enterprise-level marketing attribution system with sophisticated multi-touch attribution models, transaction tracking, and comprehensive admin dashboard. Features advanced re-attribution logic, customer journey tracking, and revenue attribution across all marketing channels.
+        </p>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        
+        <!-- System Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <!-- Attribution Engine -->
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Multi-Touch Attribution Engine</h3>
+            <p class="text-gray-700 mb-4">
+              Advanced attribution system supporting first-touch, last-touch, and re-attribution models. Tracks complete customer journeys from anonymous visitor to loyal customer with automatic re-attribution for repeat purchases.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-red-100 text-red-800 rounded-md text-sm font-medium">Laravel 11</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-md text-sm font-medium">PHP 8.3</span>
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-md text-sm font-medium">MySQL</span>
+            </div>
+          </div>
+          
+          <!-- Admin Dashboard -->
+          <div class="bg-gradient-to-br from-green-50 to-cyan-50 rounded-2xl p-6">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Interactive Analytics Dashboard</h3>
+            <p class="text-gray-700 mb-4">
+              React-powered admin dashboard with real-time analytics, campaign performance tracking, conversion funnel analysis, and data visualization using Chart.js for actionable marketing intelligence.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-md text-sm font-medium">React 18</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-md text-sm font-medium">TypeScript</span>
+              <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-md text-sm font-medium">Chakra UI</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Project Overview</h2>
+        <p>
+          For BadgerCoin, a cryptocurrency e-transfer platform, I architected and implemented a comprehensive marketing analytics and attribution system that provides enterprise-level intelligence on marketing effectiveness. The system tracks comprehensive revenue data across 13+ campaigns and 8+ marketing channels, providing actionable insights for data-driven marketing decisions.
+        </p>
+
+        <p>
+          This full-stack solution integrates deeply with the BadgerCoin platform to automatically track user journeys from initial UTM-tagged visit through registration, login, and purchases—both first-time and repeat. The system employs sophisticated attribution models that determine which marketing touchpoints deserve credit for conversions, supporting business decisions about where to invest marketing dollars.
+        </p>
+
+        <!-- Key Metrics Section -->
+        <div class="bg-gray-50 rounded-lg p-6 my-8">
+          <h3 class="text-xl font-semibold mb-4">System Capabilities</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 mb-1">13+</div>
+              <div class="text-sm text-gray-600">Campaign Scenarios</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-purple-600 mb-1">8+</div>
+              <div class="text-sm text-gray-600">Marketing Channels</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Technical Architecture</h2>
+        
+        <h3 class="text-xl font-semibold mt-8 mb-4">Backend Attribution Engine (Laravel)</h3>
+        <p>
+          Built a sophisticated Laravel service layer that automatically tracks and attributes marketing touchpoints throughout the customer lifecycle. The MarketingTrackingService implements multiple attribution models with intelligent logic for handling complex scenarios like repeat purchases and multi-channel journeys.
+        </p>
+
+        <ul class="list-disc pl-6 space-y-2 my-4">
+          <li><strong>UTM Parameter Tracking:</strong> Middleware that captures and persists UTM parameters across sessions using cookies and database storage</li>
+          <li><strong>Automatic Attribution:</strong> Event-driven tracking for user registration, login, and purchase events with zero manual intervention required</li>
+          <li><strong>First-Touch Attribution:</strong> Tracks primary acquisition sources with percentage breakdowns across campaigns</li>
+          <li><strong>Last-Touch Attribution:</strong> Credits the most recent touchpoint for first-time purchases</li>
+          <li><strong>Re-Attribution Model:</strong> Sophisticated logic that re-attributes repeat purchases to new touchpoints within a 30-day window</li>
+          <li><strong>Customer Lifetime Value:</strong> Accumulates value to original campaigns when no new touchpoints exist</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-8 mb-4">Data Model & Database Schema</h3>
+        <p>
+          Designed a comprehensive marketing table schema that captures all necessary attribution data while maintaining performance with proper indexing. The model includes user relationships, conversion tracking, and flexible JSON fields for custom action data.
+        </p>
+
+        <div class="bg-blue-50 rounded-lg p-6 my-6">
+          <h4 class="font-semibold mb-3">Key Database Fields</h4>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>UTM Parameters:</strong> source, medium, campaign, term, content for complete campaign tracking</li>
+            <li><strong>Session Data:</strong> IP address, user agent, session ID, referrer, landing page</li>
+            <li><strong>User Journey:</strong> user_state (signup, login, first_purchase, repeat_customer)</li>
+            <li><strong>Conversion Metrics:</strong> converted boolean, converted_at timestamp, conversion_value decimal</li>
+            <li><strong>Flexible Tracking:</strong> action_type and action_data JSON for extensible event tracking</li>
+          </ul>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-8 mb-4">Frontend Admin Dashboard (React + TypeScript)</h3>
+        <p>
+          Developed a comprehensive admin dashboard using React 18 and TypeScript that provides real-time visibility into marketing performance. The dashboard features interactive data visualizations, campaign performance cards, and detailed user journey analysis.
+        </p>
+
+        <ul class="list-disc pl-6 space-y-2 my-4">
+          <li><strong>Marketing Overview:</strong> High-level KPIs showing total campaigns, touchpoints, conversions, revenue, and average revenue per user</li>
+          <li><strong>Campaign Analytics:</strong> Detailed performance metrics for each campaign with conversion rates and revenue attribution</li>
+          <li><strong>Data Visualization:</strong> Chart.js integration displaying acquisition channel distribution and conversion rate comparisons</li>
+          <li><strong>Campaign Performance Cards:</strong> Grid view showing touchpoints, users, conversions, and top acquisition sources per campaign</li>
+          <li><strong>User Journey Tracking:</strong> Detailed timelines showing complete customer journeys from first touch to purchase</li>
+          <li><strong>CSV Export:</strong> Full data export capability for further analysis in Excel or other tools</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Attribution Models Implemented</h2>
+
+        <div class="space-y-6 my-8">
+          <div class="border-l-4 border-blue-500 pl-6">
+            <h4 class="font-semibold mb-2">First-Touch Attribution</h4>
+            <p class="text-gray-700 mb-2">Emphasizes acquisition sources by tracking the first campaign that brought each user. Calculates percentage breakdowns showing which channels are most effective at bringing new users into the funnel.</p>
+            <p class="text-sm text-gray-600"><strong>Use Case:</strong> Understanding which marketing channels are best at customer acquisition—crucial for CAC calculations.</p>
+          </div>
+          
+          <div class="border-l-4 border-green-500 pl-6">
+            <h4 class="font-semibold mb-2">Last-Touch Attribution</h4>
+            <p class="text-gray-700 mb-2">Credits the most recent marketing touchpoint before a conversion. For first purchases, the system attributes the full conversion value to the last campaign the user interacted with.</p>
+            <p class="text-sm text-gray-600"><strong>Use Case:</strong> Identifying which campaigns are most effective at driving immediate conversions and closing sales.</p>
+          </div>
+          
+          <div class="border-l-4 border-purple-500 pl-6">
+            <h4 class="font-semibold mb-2">Re-Attribution for Repeat Customers</h4>
+            <p class="text-gray-700 mb-2">Advanced model that re-attributes repeat purchases when users interact with new campaigns within 30 days of their last purchase. If no new touchpoints exist, value accumulates to the original campaign.</p>
+            <p class="text-sm text-gray-600"><strong>Use Case:</strong> Measuring the effectiveness of retargeting and loyalty campaigns at driving repeat purchases from existing customers.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-500 pl-6">
+            <h4 class="font-semibold mb-2">Customer Lifetime Value Tracking</h4>
+            <p class="text-gray-700 mb-2">Accumulates total customer value to campaigns over time, showing which acquisition sources bring the highest-value customers. Includes both first purchase and all subsequent purchases.</p>
+            <p class="text-sm text-gray-600"><strong>Use Case:</strong> Long-term ROI analysis to identify which channels bring customers with highest lifetime value, not just highest volume.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Key Features Implemented</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
+              Multi-Channel Campaign Tracking
+            </h4>
+            <p class="text-gray-600">Tracks performance across Google Ads, Facebook, Instagram, Twitter, LinkedIn, YouTube influencers, email marketing, SEO/organic, and affiliate programs with unified attribution.</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+              Automatic Session Persistence
+            </h4>
+            <p class="text-gray-600">UTM parameters stored in both session and database, tracking users even when they navigate away and return later or across different sessions.</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-purple-500 rounded-full mr-3"></span>
+              Anonymous-to-Authenticated Linking
+            </h4>
+            <p class="text-gray-600">Seamlessly connects anonymous visitor sessions to authenticated user accounts, preserving complete journey history from first visit through conversion.</p>
+          </div>
+          
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-orange-500 rounded-full mr-3"></span>
+              Revenue Attribution & ROI Analysis
+            </h4>
+            <p class="text-gray-600">Tracks exact dollar amounts attributed to each campaign, enabling precise ROI calculations and data-driven marketing budget decisions.</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-red-500 rounded-full mr-3"></span>
+              Conversion Funnel Analysis
+            </h4>
+            <p class="text-gray-600">Track users through entire funnel from page view → signup → login → first purchase → repeat customer with state-based tracking.</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm border">
+            <h4 class="font-semibold mb-3 flex items-center">
+              <span class="w-3 h-3 bg-cyan-500 rounded-full mr-3"></span>
+              Demo Data & Testing Infrastructure
+            </h4>
+            <p class="text-gray-600">Comprehensive seeder creating realistic demo scenarios with 28+ touchpoints across 8+ user journeys, perfect for demonstrations and testing.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">API Architecture</h2>
+        <p>
+          Designed and implemented RESTful API endpoints that power both the admin dashboard and provide data export capabilities. The API supports filtering, pagination, CSV export, and complex queries for campaign performance analysis.
+        </p>
+
+        <div class="bg-blue-50 rounded-lg p-6 my-6">
+          <h4 class="font-semibold mb-3">API Endpoints</h4>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>GET /api/marketing:</strong> Main data endpoint with pagination, filtering by campaign/source/medium, and expandable user journeys</li>
+            <li><strong>GET /api/marketing/campaigns:</strong> Campaign analytics with first-touch attribution statistics and conversion metrics</li>
+            <li><strong>GET /api/marketing/user/ID/journey:</strong> Complete user journey timeline with all touchpoints and conversions</li>
+            <li><strong>GET /api/marketing/analytics:</strong> Marketing analytics summary with top sources, campaigns, and daily traffic patterns</li>
+            <li><strong>GET /api/marketing/first-touch-sources:</strong> First-touch attribution breakdown across all acquisition channels</li>
+            <li><strong>POST /api/marketing/track:</strong> Track marketing touchpoints with UTM parameters and user actions</li>
+            <li><strong>POST /api/marketing/conversion:</strong> Track conversion events with action type and conversion value</li>
+            <li><strong>CSV Export:</strong> All GET endpoints support Accept: text/csv header for data export</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Technical Challenges & Solutions</h2>
+        
+        <div class="space-y-6 my-8">
+          <div class="border-l-4 border-blue-500 pl-6">
+            <h4 class="font-semibold mb-2">Challenge: Attribution Window for Repeat Purchases</h4>
+            <p class="text-gray-700 mb-2">Determining when to re-attribute a repeat purchase to a new campaign versus accumulating value to the original acquisition campaign.</p>
+            <p class="text-sm text-gray-600"><strong>Solution:</strong> Implemented a 30-day re-attribution window with minimum 1-hour gap between purchases. New touchpoints within the window get credit; otherwise value accumulates to existing campaign, providing both retargeting insights and long-term CAC accuracy.</p>
+          </div>
+          
+          <div class="border-l-4 border-green-500 pl-6">
+            <h4 class="font-semibold mb-2">Challenge: Session Persistence Across Multiple Visits</h4>
+            <p class="text-gray-700 mb-2">Users often visit from a marketing campaign, leave, and return later to complete signup/purchase without UTM parameters.</p>
+            <p class="text-sm text-gray-600"><strong>Solution:</strong> Dual-layer persistence using both session storage and database. UTM parameters stored on user model at registration with first_utm_* fields and in marketing table for all touchpoints, ensuring attribution even weeks later.</p>
+          </div>
+          
+          <div class="border-l-4 border-purple-500 pl-6">
+            <h4 class="font-semibold mb-2">Challenge: Multi-Touch Journey Attribution Accuracy</h4>
+            <p class="text-gray-700 mb-2">Users interact with multiple campaigns before converting—determining which touchpoints to credit and how to present the data clearly.</p>
+            <p class="text-sm text-gray-600"><strong>Solution:</strong> Implemented multiple attribution models (first-touch, last-touch, re-attribution) simultaneously, allowing business to analyze from different perspectives. Dashboard shows both primary source and top acquisition sources per campaign with percentage breakdowns.</p>
+          </div>
+
+          <div class="border-l-4 border-orange-500 pl-6">
+            <h4 class="font-semibold mb-2">Challenge: Real-Time Dashboard Performance</h4>
+            <p class="text-gray-700 mb-2">Computing complex attribution statistics and aggregations in real-time for dashboard display without slow page loads.</p>
+            <p class="text-sm text-gray-600"><strong>Solution:</strong> Optimized SQL queries with proper indexing, implemented database-level aggregations, and used Laravel query optimization techniques. Added caching layer for frequently accessed metrics and pagination for large datasets.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Demo Scenarios & Testing</h2>
+        <p>
+          Created comprehensive demo data showcasing real-world marketing scenarios. The seeder generates 8+ complete user journeys representing different attribution models and marketing channels, perfect for demonstrating system capabilities to stakeholders.
+        </p>
+
+        <div class="bg-green-50 rounded-lg p-6 my-6">
+          <h4 class="font-semibold mb-4 text-green-800">Demo User Scenarios</h4>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-semibold text-gray-800">Google Ads Simple Conversion</span>
+                <p class="text-gray-600">Alice Johnson - Single touchpoint → purchase showing basic paid acquisition</p>
+              </div>
+              <span class="font-semibold text-green-800">$250</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-semibold text-gray-800">Facebook Multi-Touch</span>
+                <p class="text-gray-600">Bob Smith - Video ad → Carousel → Retargeting → Purchase demonstrating last-touch attribution</p>
+              </div>
+              <span class="font-semibold text-green-800">$500</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-semibold text-gray-800">Re-Attribution Example</span>
+                <p class="text-gray-600">Grace Lee - Google first purchase + Instagram retargeting re-attributed purchase</p>
+              </div>
+              <span class="font-semibold text-green-800">$1,250</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="font-semibold text-gray-800">Customer Loyalty Accumulation</span>
+                <p class="text-gray-600">Henry Taylor - Twitter acquisition with multiple loyalty purchases showing CLV tracking</p>
+              </div>
+              <span class="font-semibold text-green-800">$1,100</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Technology Stack</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">Backend</div>
+            <div class="text-sm text-gray-600">Laravel 11</div>
+            <div class="text-sm text-gray-600">PHP 8.3</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">Frontend</div>
+            <div class="text-sm text-gray-600">React 18</div>
+            <div class="text-sm text-gray-600">TypeScript</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">UI Framework</div>
+            <div class="text-sm text-gray-600">Chakra UI</div>
+            <div class="text-sm text-gray-600">Chart.js</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">Database</div>
+            <div class="text-sm text-gray-600">MySQL</div>
+            <div class="text-sm text-gray-600">Eloquent ORM</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">State Management</div>
+            <div class="text-sm text-gray-600">React Hooks</div>
+            <div class="text-sm text-gray-600">Axios</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">Authentication</div>
+            <div class="text-sm text-gray-600">Laravel Sanctum</div>
+            <div class="text-sm text-gray-600">JWT</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">API</div>
+            <div class="text-sm text-gray-600">RESTful</div>
+            <div class="text-sm text-gray-600">CSV Export</div>
+          </div>
+          
+          <div class="text-center p-4 bg-gray-50 rounded-lg">
+            <div class="font-semibold text-gray-800 mb-1">Testing</div>
+            <div class="text-sm text-gray-600">Demo Seeders</div>
+            <div class="text-sm text-gray-600">Artisan Commands</div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Business Impact & Value</h2>
+        <p>
+          This marketing attribution system provides BadgerCoin with enterprise-level marketing intelligence previously only available to companies using expensive analytics platforms. The system enables data-driven marketing decisions by answering critical business questions:
+        </p>
+
+        <ul class="list-disc pl-6 space-y-2 my-4">
+          <li><strong>Which campaigns drive the most revenue?</strong> Not just clicks or impressions, but actual dollar amounts attributed to each campaign</li>
+          <li><strong>What's the true customer acquisition cost per channel?</strong> Complete attribution from first touch through conversion with revenue data</li>
+          <li><strong>Which sources bring high-lifetime-value customers?</strong> Track long-term customer value beyond just initial purchase</li>
+          <li><strong>How do customers interact with multiple touchpoints?</strong> Complete journey visualization showing the path to conversion</li>
+          <li><strong>When should we re-attribute repeat purchases?</strong> Intelligent re-attribution logic that balances retargeting insights with CAC accuracy</li>
+          <li><strong>What's the ROI of different marketing investments?</strong> Direct revenue attribution enables precise ROI calculations per channel</li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Lessons Learned</h2>
+        <p>
+          Building an enterprise-level marketing attribution system from scratch provided deep insights into both the technical and business challenges of marketing analytics. Key learnings include the importance of flexible attribution models, the complexity of session persistence across multiple visits, and the value of comprehensive demo data for stakeholder presentations.
+        </p>
+
+        <ul class="list-disc pl-6 space-y-2 my-4">
+          <li><strong>Attribution Complexity:</strong> No single attribution model fits all business questions—supporting multiple models enables different analytical perspectives</li>
+          <li><strong>Data Persistence Strategy:</strong> Multi-layer persistence (session + database + user model) crucial for accurate long-term attribution</li>
+          <li><strong>Performance at Scale:</strong> Proper database indexing and query optimization essential for real-time dashboard performance</li>
+          <li><strong>Business Value Communication:</strong> Demo scenarios with realistic data crucial for demonstrating system value to non-technical stakeholders</li>
+          <li><strong>API Design for Analytics:</strong> Flexible filtering, pagination, and CSV export capabilities make the system valuable beyond just the dashboard</li>
+        </ul>
+
+        <!-- CTA Section -->
+        <div class="mt-12 pt-8 border-t border-gray-200">
+          <div class="text-center">
+            <h3 class="text-xl font-semibold mb-4">Interested in Learning More?</h3>
+            <p class="text-gray-600 mb-6">
+              This project showcases my expertise in full-stack development, complex business logic implementation, and data-driven analytics systems.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:buyunwang@outlook.com" class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                Get in Touch
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </a>
+              <a href="/" class="inline-flex items-center gap-2 px-6 py-3 border border-gray-900 text-gray-900 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                View More Projects
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
