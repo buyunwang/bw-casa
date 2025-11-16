@@ -1,0 +1,119 @@
+name: Lighthouse CI
+
+on:
+  # Run on every push to main branch
+  push:
+    branches: [ main, master ]
+  # Run on every pull request
+  pull_request:
+    branches: [ main, master ]
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        # Fetch full history for better commit info
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run Lighthouse CI against production site
+      run: |
+        npm install -g @lhci/cli@0.15.x
+        echo "Testing Lighthouse on: $DEPLOY_URL"
+        lhci autorun --config=./lighthouserc.cjs
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        DEPLOY_URL: https://bw.casa
+        CI: true
+
+    - name: Add Lighthouse report link to summary
+      if: always()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const linksPath = '.lighthouseci/links.json';
+
+          if (!fs.existsSync(linksPath)) {
+            core.info('No .lighthouseci/links.json found; skipping summary link.');
+            return;
+          }
+
+          const data = JSON.parse(fs.readFileSync(linksPath, 'utf8'));
+          const urls = Object.values(data);
+          if (!urls.length) {
+            core.info('links.json has no URLs; skipping summary link.');
+            return;
+          }
+
+          const url = urls[0];
+          const summary = [
+            '## Lighthouse report',
+            '',
+            `Median run report: ${url}`,
+            '',
+            '_Reports are stored in temporary-public-storage for about 7 days._',
+          ].join('\n');
+
+          await core.summary.addRaw(summary).write();
+
+    - name: Comment PR with Lighthouse results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Try to find the lighthouse results
+          const resultsPath = '.lighthouseci/';
+          if (fs.existsSync(resultsPath)) {
+            // Find the latest run results
+            const files = fs.readdirSync(resultsPath);
+            const reportFile = files.find(f => f.endsWith('.json'));
+            
+            if (reportFile) {
+              const reportPath = path.join(resultsPath, reportFile);
+              const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+              
+              // Extract scores
+              const scores = report.categories || {};
+              const performance = scores.performance?.score ? Math.round(scores.performance.score * 100) : 'N/A';
+              const accessibility = scores.accessibility?.score ? Math.round(scores.accessibility.score * 100) : 'N/A';
+              const bestPractices = scores['best-practices']?.score ? Math.round(scores['best-practices'].score * 100) : 'N/A';
+              const seo = scores.seo?.score ? Math.round(scores.seo.score * 100) : 'N/A';
+              
+              const comment = `## 🚨 Lighthouse Performance Report\n\n` +
+                `| Category | Score |\n` +
+                `|----------|-------|\n` +
+                `| 🚀 Performance | ${performance}/100 |\n` +
+                `| ♿ Accessibility | ${accessibility}/100 |\n` +
+                `| 🛡️ Best Practices | ${bestPractices}/100 |\n` +
+                `| 🔍 SEO | ${seo}/100 |\n\n` +
+                `*Reports are available in the workflow artifacts.*`;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+          }

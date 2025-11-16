@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # old site backup
 old-site-backup/
+
+# lighthouse reports
+.lighthouseci/
+lighthouse-reports/
